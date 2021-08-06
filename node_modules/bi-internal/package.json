@@ -7,8 +7,5 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "esix",
-  "license": "ISC",
-  "dependencies": {
-    "bi-internal": "git+ssh://git@github.com:luxms/bi-internal.git"
-  }
+  "license": "ISC"
 }
