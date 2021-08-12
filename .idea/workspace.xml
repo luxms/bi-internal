@@ -2,14 +2,24 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a1de08d5-b540-42f1-bfaa-3c54919f295a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/defs/BaseService.d.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/defs/Observable.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/defs/bi.d.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/defs/tables.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/core.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/services.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/services.d.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/utils.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -31,6 +41,11 @@
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -40,7 +55,8 @@
       <option name="presentableId" value="Default" />
       <updated>1628695245255</updated>
       <workItem from="1628695246452" duration="934000" />
-      <workItem from="1628696664015" duration="1395000" />
+      <workItem from="1628696664015" duration="1643000" />
+      <workItem from="1628757905501" duration="12077000" />
     </task>
     <servers />
   </component>
@@ -57,5 +73,6 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
