@@ -411,6 +411,7 @@ export declare module tables {
         title: string;
         metric_id: number;
     }
+
     export interface ILocationCard {
         css_file: string;
         id: number;
@@ -418,6 +419,23 @@ export declare module tables {
         loc_id: number; // TODO: array
         parent_id: number; // TODO: array
         title: string;
+    }
+
+    export interface IBookmark {
+        config: any;
+        context: any;
+        created: string;
+        dataset_guid: number;
+        dataset_id: number;
+        description: string;
+        full_url: string;
+        id: number;
+        srt: number;
+        tiny_url: string;
+        title: string;
+        topic_id: number;
+        updated: string;
+        user_id: number;
     }
 }
 
