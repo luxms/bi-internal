@@ -5,12 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a1de08d5-b540-42f1-bfaa-3c54919f295a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/defs/knockout.d.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/core.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/defs/tables.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/defs/tables.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/services.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/services.d.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/utils.d.ts" beforeDir="false" afterPath="$PROJECT_DIR$/utils.d.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,6 +36,7 @@
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
@@ -62,7 +58,7 @@
       <workItem from="1628696664015" duration="1643000" />
       <workItem from="1628757905501" duration="12964000" />
       <workItem from="1628840750502" duration="4869000" />
-      <workItem from="1629118975035" duration="1383000" />
+      <workItem from="1629118975035" duration="3080000" />
     </task>
     <servers />
   </component>
