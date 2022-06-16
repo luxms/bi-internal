@@ -29,8 +29,11 @@ export interface IDataSource {
 export interface IKoobModel {
     loading?: boolean;
     error?: string;
-    dimensions: IKoobDimension[];
-    measures: IKoobMeasure[];
+    dimensions: { id: string, formula?: string }[];
+    measures: { formula: string }[];
+    values: any[];
+    sort?: string[];
+    subtotals?: string[];
 }
 
 export interface IDsState {
@@ -142,5 +145,24 @@ export declare class KoobService extends BaseService<IKoobModel> {
     public static createInstance(id: string | number): KoobService;
 
     public loadEntityDetails(entityId: string): Promise<void>;
+}
+
+export declare class KoobDataService extends BaseService<IKoobModel> {
+    public constructor(koobId: string,
+                       dimensions: { id: string, formula?: string }[],
+                       measures: { formula: string }[],
+                       filters: any,
+                       loadBy?: number,
+                       sort?: any,
+                       subtotals?: string[]);
+
+    public loadItem(n: number): void;
+
+    public setSort(sort: string | null): void;
+
+    public setFilter(filters: any): void;
+
+    // axios cancel
+    public abort(): void;
 }
 
