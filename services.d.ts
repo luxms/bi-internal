@@ -1,6 +1,6 @@
 import {
     IAxesOrder, IDashboard, IDashlet,
-    IDatasetModel, IEntity, IGeo,
+    IDatasetModel, IGeo,
     IKoobDimension,
     IKoobMeasure,
     ILocation,
@@ -12,30 +12,11 @@ import {
 import {BaseService} from "./defs/BaseService";
 import {IUrl} from "./core";
 import {IDisposable} from "./defs/Observable";
-import {tables} from "./defs/tables";
-import {KnockoutObservable} from "./defs/knockout";
 
 export interface IDatasetServiceModel {
     loading: boolean;
     error: string;
     dataset: IDatasetModel;
-}
-
-export interface IAuthentication {
-    authenticated: boolean;
-    userId?: number;
-    access_level?: string;
-    username?: string;
-    name?: string;
-    loading: boolean;
-    error: string;
-    userConfig?: {
-        [key: string]: string;
-    };
-    isNeed2FACode?: boolean;
-    isBlocked?: boolean;
-    errorKey?: string;
-    errorMessage?: string;
 }
 
 export interface IDataSource {
@@ -48,8 +29,11 @@ export interface IDataSource {
 export interface IKoobModel {
     loading?: boolean;
     error?: string;
-    dimensions: IKoobDimension[];
-    measures: IKoobMeasure[];
+    dimensions: { id: string, formula?: string }[];
+    measures: { formula: string }[];
+    values: any[];
+    sort?: string[];
+    subtotals?: string[];
 }
 
 export interface IDsState {
@@ -76,76 +60,6 @@ export interface IDsState {
     dataset: IDatasetModel;
 }
 
-interface IAuthCheckData2 {
-    sessionId: string;
-    user: IRawUser;
-    authType?: string;
-}
-
-interface IAuthCheckData3 {
-    access_level: string;
-    id: string;
-    name: string;
-    authType?: string;
-    config: IRawUserConfig;
-}
-
-export interface IRawUser {
-    id: number;
-    name: string;
-    email: string;
-    username: string;
-    config?: IRawUserConfig;
-}
-
-export declare type IRawUserConfig = {
-    [key: string]: string;
-};
-
-export interface IDatasetsListModel {
-    loading: boolean;
-    error: string;
-    datasets: IDatasetsListItem[];
-    roots: IDatasetsListItem[];
-}
-
-export interface IDatasetsListTile {
-    dataset: IDatasetsListItem;
-    percentage: {
-        x: number;
-        y: number;
-        w: number;
-        h: number;
-    };
-}
-
-export interface IDatasetsListItem extends IEntity {
-    id: string;
-    guid: string;
-    schema_name: string;
-    title: string;
-    description: string;
-    layout: string;
-    image: string;
-    lastPeriodTitle: string;
-    href: string;
-    color: string;
-    tiles: IDatasetsListTile[];
-    bookmarks: any[];             // tables.IBookmark[]
-    searchVisible: boolean;       // TODO: remove
-    children: IDatasetsListItem[];
-    resourcesRoot: string;
-    parents: IDatasetsListItem[];
-    uiCfg: any;
-
-    deleteBookmark(bookmark: tables.IBookmark);
-}
-
-
-/**
- * all services
- */
-
 export declare class DatasetService extends BaseService<IDatasetServiceModel> {
     private readonly _datasetId: string | number;
 
@@ -166,8 +80,6 @@ export declare class CurrentDsStateService extends BaseService<IDsState> {
     public static subscribeUpdatesAndNotify(listener: (model: IDsState) => void): IDisposable;
 
     public static unsubscribe(listener: (...args: any[]) => any): boolean;
-
-    public static getInstance(): CurrentDsStateService;
 
 }
 
@@ -235,60 +147,22 @@ export declare class KoobService extends BaseService<IKoobModel> {
     public loadEntityDetails(entityId: string): Promise<void>;
 }
 
-export declare class AuthenticationService extends BaseService<IAuthentication> {
-    private constructor();
+export declare class KoobDataService extends BaseService<IKoobModel> {
+    public constructor(koobId: string,
+                       dimensions: { id: string, formula?: string }[],
+                       measures: { formula: string }[],
+                       filters: any,
+                       loadBy?: number,
+                       sort?: any,
+                       subtotals?: string[]);
 
-    private _init;
+    public loadItem(n: number): void;
 
-    protected _setModel(m: IAuthentication): void;
+    public setSort(sort: string | null): void;
 
-    isAuthenticated(): boolean;
+    public setFilter(filters: any): void;
 
-    private _check;
-
-    check(): Promise<IAuthCheckData2 | IAuthCheckData3>;
-
-    private _notifyLoggedOut;
-
-    signIn(username: string, password: string): Promise<IAuthentication>;
-
-    signOut(): Promise<any>;
-
-    resendCode(): Promise<any>;
-
-    signInWithCode(code: string): Promise<any>;
-
-    static readonly NOT_AUTHENTICATED: string;
-    static FORCE_LOGIN_KEY: string;
-    static getInstance: () => AuthenticationService;
-
-    static getModel(): IAuthentication;
-
-    static subscribeUpdatesAndNotify(listener: (model: IAuthentication) => void): IDisposable;
-
-    static subscribeUpdates(listener: (model: IAuthentication) => void): IDisposable;
-
-    static unsubscribe(listener: (...args: any[]) => any): boolean;
-
-    static signOut(): Promise<any>;
-
-    static signInWithCode(code: string): Promise<any>;
-
-    static signIn(username: string, password: string): Promise<IAuthentication>;
-
-    static resendCode(): Promise<any>;
+    // axios cancel
+    public abort(): void;
 }
-
-export declare class DatasetsListService extends BaseService<IDatasetsListModel> {
-    public static getModel(): IDatasetsListModel
-
-    public static subscribeUpdatesAndNotify(listener: (model: IDatasetsListModel) => void): IDisposable
-
-    public static unsubscribe(listener: (...args: any[]) => any): boolean
-}
-
-export const  RZD_SEARCH_LOCATION: KnockoutObservable<ILocation>
-
-
-
 
