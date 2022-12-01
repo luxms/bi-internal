@@ -1,41 +1,4 @@
-import React = require("./defs/react")
-import {ISummaryModel} from './services/services'
+export {RootContent} from './root/RootContent';
+export {RootMenu} from './root/RootMenu';
+export {RootHeader} from './root/RootHeader';
 
-export interface IRootSegment {
-    title: string;
-    url: string;
-    bgUrl: string;
-    key: string;
-    bgColor?: string;
-    getTabElementClass?(): any;
-    getBodyElementClass?(): any;
-    getIcon?(): any;
-    tabElementClassCached?: any;    // TODO: move to View class
-    bodyElementClassCached?: any;   // TODO: move to View class
-}
-export interface IRootVM {
-    viewClassId: 'Root/Root';
-    error: string;
-    loading: boolean;
-    tabs: IRootSegment[];
-    summary: ISummaryModel;
-    activeTabIndex: number;
-    activeTab: IRootSegment;
-    showHeader: boolean;
-}
-
-export class RootContent extends React.Component<IRootVM> {
-    public constructor(props:IRootVM) 
-}
-interface IRootMenuProp {
-    tabs: IRootSegment[];
-    activeTabIndex: number | null;
-}
-
-export class RootMenu extends React.Component<IRootMenuProp> {
-    public constructor(props:IRootMenuProp)
-}
-
-export class RootHeader extends React.Component<any> {
-    public constructor(props) 
-}

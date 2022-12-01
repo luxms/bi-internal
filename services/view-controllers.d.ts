@@ -1,15 +1,29 @@
 import {BaseService} from '../core/BaseService'
 import { IDatasetModel, IDsState, IDsStateService } from '../defs/types';
+import { IRootSegment } from './plugins';
+import { ISummaryModel } from './services';
 
 export interface ISearchVM {
-    loading: boolean;
-    error: string;
-    search: string;
+    readonly loading: boolean;
+    readonly error: string;
+    readonly search: string;
 }
-
+/**
+ * @class
+ * @instance
+ * @description Сервис хранит ввод пользователя в "поиск", используется в Наборе данных. Использует внутри подписку на UrlState (При смене url, search:null) *
+ */
 export class SearchVC extends BaseService<ISearchVM> {
     protected constructor();
+    /**
+     * @method
+     * @description Инициализация SearchVC service
+     * */
     public static getInstance ():SearchVC;
+    /**
+     * @method
+     * @description обновляет модель, не обернут в debounce
+     * */
     public setSearch(search: string):void;
 }
 
@@ -39,6 +53,30 @@ export interface IDsShellVM {
     key: string;
 }
 
+export interface IPopupPosition {
+    left?: number;
+    top?: number;
+    right?: number;
+}
+
+export interface IPopupMenuItem {
+    title: string;
+    onPress: () => void;
+}
+
+
+export interface IPopupVM extends IPopupPosition {
+    loading?: boolean;
+    error?: string;
+    visible: boolean;
+    // content
+    dialogVM: any;
+    description: string;
+    menuItems: IPopupMenuItem[];
+    // events
+    onClose: () => void;
+}
+
 
 interface IDepsModels {
     dsState: IDsState;
@@ -47,6 +85,16 @@ export interface IAdmShellVM {
     loading?: boolean;
     error?: string;
     viewClassId: 'AdmShell';
+}
+export interface IRootVM {
+    viewClassId: 'Root/Root';
+    error: string;
+    loading: boolean;
+    tabs: IRootSegment[];
+    summary: ISummaryModel;
+    activeTabIndex: number;
+    activeTab: IRootSegment;
+    showHeader: boolean;
 }
 
 export interface IShellVM {
@@ -72,16 +120,31 @@ export class DsShellVC extends BaseService<IDsShellVM> {
 }
 
 export interface IThemeVM {
-    error: string;
-    loading: boolean;
-    themes: any;
-    currentTheme: any;
-    currentThemeId: string;
+    readonly error: string;
+    readonly loading: boolean;
+    readonly themes: any;
+    readonly currentTheme: any;
+    readonly currentThemeId: string;
 }
 
+/**
+ * @class
+ * @instance
+ * @description Сервис подтягивает из ресурсов themes.json, темы могут лежать как в ds_res, так и в отдельной папке датасета ds_... .
+ * Если в ресурсах ничего нет, тема берется из bi-face,
+ */
 export class ThemeVC extends BaseService<IThemeVM> {
     protected constructor();
+    /**
+     * @method
+     * @description Инициализация ThemeVC service
+     * */
     public static getInstance():ThemeVC;
+
+    /**
+     * @method
+     * @description Переключение темы (светлая-темная-..-...) themes.json = { [currentThemeId:string]: {[vars:strng]:string} }
+     * */
     public setTheme(currentThemeId: string): void;
     public static applyThemeToElement(themeId: string, theme: any, element: HTMLElement): void;
 }
