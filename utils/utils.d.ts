@@ -175,9 +175,21 @@ export function getGroupVizelTypes(vizelGroup: string): string[]
  * @description Функция перевода, ключи лежат в файле локализации
  */
 export function lang(key: string, defaultValue?: string): string
-export function formatDate(date, periodType)
+
+/**
+ * @param {string} date -
+ * @param {number} periodType - выбор формата для периода
+ * @description Функция использует библиотеку moment.js, форматирует дату в форматы заданы в periodType.
+ * 0 : format() // 1: ll LTS // 2:lll // 3:ll HH // 4:ll // 5:YYYY неделя w  // 6:YYYY MMM // 7:YYYY Q //8:YYYY]
+ */
+export function formatDate(date: string, periodType: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8): string
+
+/**
+ * @param {string|number} value - число
+ * @param {number} precision - количество символов после запятой, если число с плавающей точкой.
+ * @description Преобразует число в формате '# ###', precision - округлит дробную часть. (если она есть)
+ */
 export function formatNum(value: IValue, precision?: number): string
-export function getMetricFormat(config, m)
 
 // round and add unit/suffix to val19
 export function makeValue(v: IValue, unit?: IUnit, digits?: number, config?: IVizelConfig, m?: IMetric);
@@ -185,24 +197,34 @@ export function makeValue(v: IValue, unit?: IUnit, digits?: number, config?: IVi
 /**
  * @param {string} value - строка обработки
  * @param {string} pattern - вхождение символов
- * @description умеет искать вхождения с ошибкой ввода переключения языка ( search("найди меня",'yfq')=>true)
+ * @description Функция умеет искать вхождения с ошибкой ввода переключения языка ( search("найди меня",'yfq')=>true)
  */
 export function search(value: string, pattern: string): boolean
 
 /**
- * Заменяет вхождения в строке начинающиеся на знак процента на их значения
- * @param str - исходная строка с заменой
- * @param patterns - шаблоны для замены и значения
- * @param [defaultFormats] - форматы для чисел
+ * @param {string} str - исходная строка с заменой
+ * @param {object} patterns - шаблоны для замены и значения
+ * @param {object} defaultFormats - форматы для чисел
+ * @description Заменяет вхождения в строке начинающиеся на знак процента на их значения
  */
 export function stringSubstitute(str: string, patterns: { [id: string]: ((p: string, fmt?: string) => string | number | void) | string | number}, defaultFormats?: { [id: string]: string }): string
 
+/**
+ * @param {string} s - строка текста
+ * @description Функция переводит кириллицу на латиницу и заменяет пробелы на _
+ */
 export function idify(s: string): string
 
+/**
+ * @param {string[]} ss - массив строк текста
+ * @description Функция переводит кириллицу на латиницу и заменяет пробелы на _, если в массиве содержаться копии, к каждой добавит _{ЧИСЛО копий}
+ */
 export function idifyMany(ss: string[]): string[]
 
-
-
+/**
+ * @description Функция проверяет ширину или длину экрана, если меньше = true
+ * @return {boolean}
+ */
 export function isSmallPhone(): boolean
 
 /**
