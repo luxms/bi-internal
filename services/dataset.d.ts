@@ -16,6 +16,14 @@ interface IDepsModels {
     url: IUrl;
 }
 
+/**
+ * @param {string} schemaName  - имя датасета
+ * @param {ISubspacePtr} subspacePtr - вспомогательная функция с работой datasource
+ * @param {boolean} isExternal - external vizel?
+ * @param {function} onChange -  функция callback при изменении модели
+ * @description Асинхронная функция создания subspace, сама решает какой subspace создать для МЛП,КУБОВ,ЛУКАП
+ * SubspacePtr можно взять из конфига методом getSubspacePtr()
+ */
 export function createSubspaceGenerator(schemaName: string, subspacePtr: ISubspacePtr, isExternal: boolean, onChange: any): IDisposable;
 
 export class DatasetService extends BaseService<IDatasetServiceModel> {
@@ -23,6 +31,9 @@ export class DatasetService extends BaseService<IDatasetServiceModel> {
     public static createInstance(id: string | number): DatasetService
 }
 
+/**
+ * @description Подписан на url, показывает в моделе какой датасет/дешборд/дешлет/метрика... на экране.
+ */
 export class CurrentDsStateService extends BaseService<IDsState> {
     protected _onDepsReadyAndUpdated({
                                          authentication,
@@ -31,7 +42,10 @@ export class CurrentDsStateService extends BaseService<IDsState> {
                                      }: { authentication: IAuthentication, dsState: IDsState, urlState: IUrl });
 
     public static getInstance(): CurrentDsStateService;
+    public static subscribeUpdatesAndNotify(listener: (model: IDsState) => void): IDisposable;
+    public static unsubscribe(listener: (...args: any[]) => any): boolean;
 }
+
 
 export class DsStateService extends BaseService<IDsState> implements IDsStateService {
 
