@@ -1,7 +1,10 @@
 import {IRawColor, IDisposable, IEntity, ISubspace, IVizelDescription, IValue, IUnit, IMetric, ILocation, IPeriod} from '../defs/bi'
 import {IVizelConfig, IAxesOrder} from '../defs/types'
 
-
+/**
+ * @param {IRawColor}  c - принимает число, массив, строку
+ * @description Если в аргументе строка, отдает без изменения, если массив разбивает на rgb, если число ищет в палитре число skin.colorPallete
+ */
 export function makeColor(c: IRawColor): string | null;
 
 export module coloring {
@@ -34,10 +37,16 @@ export module coloring {
     }
 
     export class RGBColor implements IColor {
-        public constructor(r, g, b);
-
+        public constructor(r: number, g: number, b: number);
+        
+        /**
+         * @description возвращает класс RGBColor
+         */
         public toRGB(): RGBColor;
-
+        
+        /**
+         * @description возвращает класс HSVColor, преобразуя ранее заданный rgb
+         */
         public toHSV(): HSVColor
 
         public add(d1: number, d2: number, d3: number): IColor
@@ -45,7 +54,10 @@ export module coloring {
         public mul(x1: number, x2: number, x3: number): IColor
 
         public static interpolateRGB(c1: RGBColor, c2: RGBColor, k: number): RGBColor
-
+        
+        /**
+         * @description Выводит цвет в формате HEX
+         */
         public toString(): string
     }
 
@@ -73,55 +85,99 @@ export module coloring {
         public mulEx2(mh: number, ms: number, mv: number): IColor
 
         public toHSV(): HSVColor
-
+        
+        /**
+         * @description Выводит цвет в формате HEX
+         */
         public toString(): string
 
         public static interpolateHSV(c1: HSVColor, c2: HSVColor, k: number): HSVColor
     }
 
-    export function make(s: string): IColor
-
-    export function makeGradient(gradientType: string, baseColor: string): IGradientColor
+    export function make(s: string): IColor;
+    
+    /**
+     * @param {string} gradientType - тип градиента, 4шт.
+     * @param {string} baseColor - цвет в формате HEX
+     * @description Создает градиент на основе HEX цвета + тип градиента.
+     */
+    export function makeGradient(gradientType: '3d' | 'opacity' | 'transparentize' | string, baseColor: string): IGradientColor
     export function makeEchartsGradient(gradientType: string, baseColor: string, chartType?: string): IGradientEchartsColor;
 }
 
 
-// Helper function: make plain config from tree-based object
+/**
+ * @param {object} treeConfig - Объект с вложенными объектами.
+ * @param {string} prefix - добавление префикса в начало ключа объекта
+ * @description Из древовидного объекта возвращает 1-уровневый, все объекты вложенности разделены через '.'
+ */
 export function makePlainConfig(treeConfig: any, prefix?: string): any
 
 export module bi {
 
-    function getAxisProjectionName(es: IEntity[])
-
+    /**
+     * @param {IEntity[]} xs - сущности осей
+     * @param {IEntity[]} ys - сущности осей
+     * @param {IEntity[]} zs - сущности осей
+     * @return {ISubspace} - создает subspace
+     * @description Функция создания Subspace для MLP, YXZ
+     */
     export function createSimpleSubspace(xs: IEntity[], ys: IEntity[], zs: IEntity[]): ISubspace
 
+    /**
+     * @param {IEntity[]} xs - сущности осей
+     * @param {IEntity[]} ys - сущности осей
+     * @param {IEntity[]} zs - сущности осей
+     * @return {ISubspace} - создает subspace
+     * @description Функция создания Subspace для MLP, YXZ
+     */
     export function createSimpleSubspaceXYZ(xs: IEntity[], ys: IEntity[], zs: IEntity[]): ISubspace
 
+    /**
+     * @param {IEntity[]} xs - сущности осей
+     * @param {IEntity[]} ys - сущности осей
+     * @param {IEntity[]} zs - сущности осей
+     * @return {ISubspace} - создает subspace
+     * @description Функция создания Subspace для MLP, ZYS
+     */
     export function createSimpleSubspaceZYX(zs: IEntity[], ys: IEntity[], xs: IEntity[]): ISubspace
 }
 
+/**
+ * @param services
+ * @param callback
+ * @param immediateNotify
+ * @deprecated
+ */
 export function subscribeServices(services: any[], callback: any, immediateNotify?: boolean): IDisposable
 
+/**
+ * @param services
+ * @param callback
+ * @deprecated
+ */
 export function subscribeServicesAndNotify(services: any[], callback: any): IDisposable
 
-//
-// is-mergeable-object
-//
-export  function isMergeableObject(value);
-export function isNonNullObject(value);
-export function isSpecial(value);
-
 /**
- *
- * Simple resize watcher that works with iframes
- *
+ * @param {any} value - объект
+ * @return {boolean}
+ * @description Функция проверяет можно ли этот объект смержить, проверяет на RegExp, Date, ReactEl
  */
+export function isMergeableObject(value: any): boolean;
+
+
 interface IResizeWatcherItem {
     container: HTMLElement;
     rect: ClientRect;
     callback: (container: HTMLElement) => any;
 }
 
+/**
+ * @param container
+ * @param callback
+ * @description  Simple resize watcher that works with iframes
+ * @deprecated
+ */
 export function addResizeWatcher(container: HTMLElement, callback: (container: HTMLElement) => any): IDisposable;
 
 export function markContinuousPeriodType<E extends IEntity>(es: E[], cpt: [number, number] | null): E[];

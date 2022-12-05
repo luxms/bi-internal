@@ -40,17 +40,10 @@ export declare class VizelConfigDisplay {
 
 export class VizelConfig implements IVizelConfig {
     public readonly dataset: IDatasetModel;
-    private readonly _options: IOptionsProvider;
-    private _subspacePtr: SubspacePtr;
     public dataSource: tables.IDataSource;
     public view_class: string;
     public display: tables.IVizelConfigDisplay;
-
     public controller: any
-
-    private _display: VizelConfigDisplay;
-    private _raw: tables.IRawVizelConfig;
-
     public title: string;
     public description: string;
     public legend: { [id: string]: tables.ILegendItem; }
@@ -64,77 +57,168 @@ export class VizelConfig implements IVizelConfig {
     public dashId: string;
     public normStrategy: string;
     public context: any;
-
     public titleContext: string[];
     public colorResolver: IColorResolver
     public titleResolver: ITitleResolver
-
     // deprecated
     public chartStyle: string;
     public showLegend: boolean;
 
     public constructor(ds: IDatasetModel, raw?: tables.IRawVizelConfig, view_class?: string)
 
-    public getDataset(): IDatasetModel
+    public getDataset(): IDatasetModel;
 
-    public getVizelType(): string 
+    /**
+     * @method
+     * @description Возвращает тип визеля (значения ключа view_class)
+     */
+    public getVizelType(): string;
 
-    public setVizelType(vizelType: string)
+    /**
+     * @method
+     * @description Устанавливает тип визеля (значения ключа view_class)
+     */
+    public setVizelType(vizelType: string):void;
 
-    public getSubspacePtr(): ISubspacePtr 
+    /**
+     * @method
+     * @description Возвращает объект subspacePtr
+     */
+    public getSubspacePtr(): ISubspacePtr;
 
-    public getRaw(): tables.IRawVizelConfig
+    /**
+     * @method
+     * @description Отдает склонированый конфиг визеля
+     */
+    public getRaw(): tables.IRawVizelConfig;
 
-    public getStoplights(vizelType?: string): IStoplights 
+    /**
+     * @return {IStoplights}
+     * @description Возвращает значения из конфига визеля display.stoplights
+     */
+    public getStoplights(): IStoplights | null;
 
-    public getStoplight(v: number, vizelType?: string): IStoplight 
+    /**
+     * @param v
+     * @param vizelType
+     * @deprecated
+     * @description Менять напрямую объект.
+     */
+    public getStoplight(v: number, vizelType?: string): IStoplight ;
 
-    public getOption(optionId: string, defaultValue?: any): boolean | null
+    /**
+     * @param {string} optionId - имя опции
+     * @param {any} defaultValue - Зн-ие если опции не найдена.
+     * @return {boolean | undefined}
+     * @description Метод ищет эту опцию в конфиги визеля, массив options, если не нашёл ищет в конфиги Датасета
+     */
+    public getOption(optionId: string, defaultValue?: any): boolean | null;
 
-    public getOptionCount(optionId: string): number
-    
-    // deprecated
-    public setOption(optionId: string, value: boolean): void
+    public getOptionCount(optionId: string): number;
 
-    public hasOption(optionId: string): boolean
+    /**
+     * @param optionId
+     * @param value
+     * @deprecated
+     * @description  Меняет напрямую объект options, не сигнализирует об обновлении конфига!!
+     */
+    public setOption(optionId: string, value: boolean): void;
 
-    // deprecated
-    public addOption(optionId: string): boolean 
+    /**
+     * @param {string} optionId - имя опции
+     * @description Метод ищет опцию в конфиги визеля, в массиве options
+     */
+    public hasOption(optionId: string): boolean;
 
-    // deprecated
-    public removeOption(optionId: string): boolean 
+    /**
+     * @param optionId
+     * @deprecated
+     * @description Меняет напрямую объект options, не сигнализирует об обновлении конфига!!
+     */
+    public addOption(optionId: string): boolean;
 
-    public getUrl(): string 
+    /**
+     * @param optionId
+     * @deprecated
+     * @description Меняет напрямую объект options, не сигнализирует об обновлении конфига!!
+     */
+    public removeOption(optionId: string): boolean;
 
-    public getBgImage(): string 
+    /**
+     * @method
+     * @return {string | null}
+     * @description возвращает значение ключа url, в конфиги визеля
+     */
+    public getUrl(): string;
 
-    public getProperty(key): any 
+    /**
+     * @method
+     * @return {string | null}
+     * @description возвращает значение ключа bgImage, в конфиги визеля
+     */
+    public getBgImage(): string;
 
-    public setProperty(key: string, value: any): void
+    /**
+     * @param key
+     * @description not implemented
+     */
+    public getProperty(key): any;
 
-    public getLegendItem(e: IEntity, idx?: number): tables.ILegendItem 
+    /**
+     * @param key
+     * @param value
+     * @description not implemented
+     */
+    public setProperty(key: string, value: any): void;
 
-    public getColor(e: IEntity, v: number, idx?: number): string 
+    /**
+     * @param {IEntity} e - сущность оси
+     * @param idx
+     * @description Ищет в dataSource.style объект, axisId[id], в МЛП ( metrics[mId], locations[lId], periods[pId]);
+     */
+    public getLegendItem(e: IEntity, idx?: number): tables.ILegendItem;
 
-    public getBgColor(e: IEntity, v: number, idx?: number): string 
+    /**
+     * @param {IEntity} e - сущность оси
+     * @param {number} v
+     * @param idx
+     * @description Наследует цвет из colorResolver | ищет цвет в style | выбирает цвет из skin.colorPallete
+     */
+    public getColor(e: IEntity, v: number, idx?: number): string;
 
-    public getColorPair(e: IEntity, v?: IValue, idx?: number): IColorPair
+    /**
+     * @param {IEntity} e - сущность оси
+     * @param {number} v
+     * @param idx
+     * @description Наследует фон из colorResolver | ищет цвет в style | выбирает цвет из skin.colorPallete
+     */
+    public getBgColor(e: IEntity, v: number, idx?: number): string; 
 
-    public getTitle(e: IEntity): string 
-    
-    public getFormat(e: IEntity): string 
+    public getColorPair(e: IEntity, v?: IValue, idx?: number): IColorPair;
 
-    public setTitle(title: string): void 
+    /**
+     * @param {IEntity} e - сущность
+     * @description Ищет title в titleResolver | ищет ключ title в style
+     */
+    public getTitle(e: IEntity): string;
 
-    public getDisplay(): IVizelConfigDisplay 
+    /**
+     * @param {IEntity} e - сущность
+     * @description Ищет ключ format в style
+     */
+    public getFormat(e: IEntity): string; 
 
-    public getRange(): IRange 
+    public setTitle(title: string): void; 
 
-    public disableRange(): void 
+    public getDisplay(): IVizelConfigDisplay; 
 
-    public serialize(): tables.IRawVizelConfig 
+    public getRange(): IRange; 
 
-    public clone(): IVizelConfig
+    public disableRange(): void; 
+
+    public serialize(): tables.IRawVizelConfig;
+
+    public clone(): IVizelConfig;
 }
 
 

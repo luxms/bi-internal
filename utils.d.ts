@@ -5,10 +5,20 @@ export * from './utils/c-utils'
 import {mouseWatcher} from './utils/MouseWathcer';
 
 declare module 'wellknown' {
-    function parse(wktString: string): any;
+    export function parse(wktString: string): any;
 }
+
+/**
+ * @param {any} lpeCode - ЛПЕ выражение
+ * @param {any} ctx - контекст ЛПЕ выражения
+ */
 export function lpeRun(lpeCode: any, ctx: any): any
 
-export declare function formatNumberWithString(value: number, format: string)
+/**
+ * @param {number} value
+ * @param  {string} format
+ * @description https://www.npmjs.com/package/format-number-with-string
+ */
+export declare function formatNumberWithString(value: number, format: string): string
 
 export {mouseWatcher}
