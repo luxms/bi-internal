@@ -1,5 +1,6 @@
-import {IDatasetModel, IVizelConfig} from '../defs/types';
-import {IVCPV, ISubspacePtr} from '../defs/bi';
+import {IVizelConfig, IDatasetModel} from '../defs/types';
+import {data_engine} from '../defs/data-manip'
+import {ISubspacePtr, IVCPV } from "../defs/bi";
 
 export interface IMenuItem {
     title: string;
@@ -11,9 +12,9 @@ export interface IMenuItem {
 export class DrilldownMenu {
     public static instance: DrilldownMenu
 
-    public constructor()
+    public constructor();
 
-    public hide(): void
+    public hide(): void;
 
     public static hide()
 
