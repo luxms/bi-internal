@@ -22,3 +22,5 @@ export function lpeRun(lpeCode: any, ctx: any): any
 export declare function formatNumberWithString(value: number, format: string): string
 
 export {mouseWatcher}
+
+
