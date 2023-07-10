@@ -1,11 +1,11 @@
-
 import React = require("../defs/react");
+import CSSProperties = React.CSSProperties;
 
 export interface IOpenModalVMOpt {
-    cancelWrapper?: boolean;   // default = true,  закрытие модального окна по клику на wrapper
-    hiddenWrapper?: boolean;   // default = false,  наличие wrapper'a
-    style?: { [id: string]: string | number };
-    className?: string;
+    readonly cancelWrapper?: boolean;   // default = true,  закрытие модального окна по клику на wrapper
+    readonly hiddenWrapper?: boolean;   // default = false,  наличие wrapper'a
+    readonly style?: CSSProperties;
+    readonly className?: string;
 }
 
 /**

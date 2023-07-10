@@ -3,26 +3,26 @@ import {IVizelProperties, tables} from '../defs/bi'
 import {repo} from '../core'
 
 export interface IVizelFromCfgProps {
-    schema_name: string;
-    view_class?: string;
-    title?: string;
-    description?: string;
-    cfg?: any;
-    rawCfg: tables.IRawVizelConfig;
-    onVizelPropertiesChanged?: (properties: IVizelProperties, vizel: any) => void;
-    properties?: IVizelProperties;
-    datasetId?: number;
-    dashId?: number | string;
-    dashboardId?: number | string;
-    dashboardTitle?: string;
-    datasetTitle?: string;
-    loadingIndicatorFunc?: () => void;
-    renderError?: (error: string) => any;
-    renderLoading?: (loading: boolean) => any;
-    editMode?: string;
-    onEditDashlet?: () => void;
-    onChangeDashlets?: (updated: repo.ds.IRawDashlet[], deleted?: number[]) => any;
-    dashlet?: any;
+    readonly schema_name: string;
+    readonly view_class?: string;
+    readonly title?: string;
+    readonly description?: string;
+    readonly cfg?: any;
+    readonly rawCfg: tables.IRawVizelConfig;
+    readonly onVizelPropertiesChanged?: (properties: IVizelProperties, vizel: any) => void;
+    readonly properties?: IVizelProperties;
+    readonly datasetId?: number;
+    readonly dashId?: number | string;
+    readonly dashboardId?: number | string;
+    readonly dashboardTitle?: string;
+    readonly datasetTitle?: string;
+    readonly loadingIndicatorFunc?: () => void;
+    readonly renderError?: (error: string) => any;
+    readonly renderLoading?: (loading: boolean) => any;
+    readonly editMode?: string;
+    readonly onEditDashlet?: () => void;
+    readonly onChangeDashlets?: (updated: repo.ds.IRawDashlet[], deleted?: number[]) => any;
+    readonly dashlet?: any;
 }
 
 /**
