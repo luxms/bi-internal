@@ -1,12 +1,12 @@
-import {BaseService} from '../core/BaseService';
+import {BaseService} from '../core';
 import {IEntity, tables, } from '../defs/bi'
 import {IVizelConfig} from '../defs/types'
 
 export interface IDatasetsListModel {
-    loading: boolean;
-    error: string;
-    datasets: IDatasetsListItem[];
-    roots: IDatasetsListItem[];
+    readonly loading: boolean;
+    readonly error: string;
+    readonly datasets: IDatasetsListItem[];
+    readonly roots: IDatasetsListItem[];
 }
 export interface IDatasetsListTile {
     dataset: IDatasetsListItem;
@@ -70,10 +70,11 @@ export interface IRawSummary {
         count: number;
     };
 }
+
 export interface ISummaryModel {
-    loading: boolean;
-    error: string;
-    data: IRawSummary;
+    readonly loading: boolean;
+    readonly error: string;
+    readonly data: IRawSummary;
 }
 
 export class SummaryService extends BaseService<ISummaryModel> {

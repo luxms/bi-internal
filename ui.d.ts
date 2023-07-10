@@ -9,3 +9,4 @@ export {PopupVC} from './ui/PopuoVC';
 export {ModalContainer, modalContainer} from './ui/modal-container';
 export {openModal} from './ui/OpenModalVC';
 export {VirtualList} from './ui/VirtualList';
+export {IfICan} from './ui/IfICan';

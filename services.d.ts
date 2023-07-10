@@ -21,8 +21,11 @@ import {KoobDataService, KoobFiltersService, KoobService} from "./services/koob"
 import {ISearchVM, SearchVC, IShellVM, DsShellVC, IDsShellVM, ThemeVC} from './services/view-controllers'
 import {Vizel} from "./components/Vizel";
 import {DatasetsListView1} from './components/DatasetsListView1';
+import {CanIService} from "./services/CanIService";
+
 
 export {
+    CanIService,
     IDatasetsListModel,
     IDatasetsListItem,
     DatasetsListService,
