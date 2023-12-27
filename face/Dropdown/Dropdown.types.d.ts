@@ -1,4 +1,4 @@
-import React from 'react';
+import React = require("../../defs/react");
 interface IBaseProps {
     children: JSX.Element[] | Element[] | JSX.Element | Element | any;
     className?: string;

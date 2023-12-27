@@ -1,4 +1,4 @@
-import React from "react";
+import React = require("../../defs/react");
 export interface IColumnType {
     name: string;
     title: string;

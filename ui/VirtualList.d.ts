@@ -9,5 +9,6 @@ interface IVirtualListProps {
 
 export class VirtualList extends React.Component<IVirtualListProps> {
     public constructor(props: IVirtualListProps)
+    public render(): React.JSX.Element;
 }
 export default VirtualList;

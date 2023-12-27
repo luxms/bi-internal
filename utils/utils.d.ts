@@ -444,3 +444,9 @@ export function makeResourceUrl(cfgUrl: string, schemaName: string): string;
  * @param s - название схемы/таблицы/столбца
  */
 export function quotifySql(s: string): string;
+
+/**
+ * @description функция позволяющая в перевод вставлять переменные
+ * @return string
+ */
+export function langL(template: TemplateStringsArray, ...args: any[]): string

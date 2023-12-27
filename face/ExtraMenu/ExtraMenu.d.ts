@@ -1,7 +1,6 @@
-import React from 'react';
-declare class ExtraMenu extends React.Component {
+import React = require("../../defs/react");
+declare class ExtraMenu extends React.Component<any> {
     static contextType: React.Context<any>;
-    componentWillUnmount(): void;
-    render(): any;
+    public render(): any;
 }
 export default ExtraMenu;

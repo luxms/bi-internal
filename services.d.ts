@@ -22,6 +22,9 @@ import {ISearchVM, SearchVC, IShellVM, DsShellVC, IDsShellVM, ThemeVC} from './s
 import {Vizel} from "./components/Vizel";
 import {DatasetsListView1} from './components/DatasetsListView1';
 import {CanIService} from "./services/CanIService";
+import {AutoCubesService} from "./services/AutoCubesService";
+import {AutoDimensionsService} from "./services/AutoDimensionsService";
+import {TransactionEntitiesService} from "./services/TransactionEntitiesService";
 
 
 export {
@@ -59,5 +62,8 @@ export {
     DsShellVC,
     ThemeVC,
     DsShell,
-    createSubspaceGenerator
+    createSubspaceGenerator,
+    AutoCubesService,
+    AutoDimensionsService,
+    TransactionEntitiesService
 };
