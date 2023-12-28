@@ -1,7 +1,8 @@
-import React from "react";
+import React = require("../../defs/react");
 import { DatePickerProps } from "./DatePicker.types";
-import "./DatePicker.scss";
+
 declare class DatePicker extends React.Component<DatePickerProps> {
-    render(): JSX.Element;
+    public constructor(props: DatePickerProps);
+    public render(): JSX.Element;
 }
 export default DatePicker;

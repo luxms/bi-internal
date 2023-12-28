@@ -28,5 +28,5 @@ export interface IDlgShareWithUserProps {
  *
  */
 export class DlgShareWithUser extends React.Component<IDlgShareWithUserProps> {
-    constructor(props: IDlgShareWithUserProps)
+    public constructor(props: IDlgShareWithUserProps)
 }

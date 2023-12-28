@@ -23,4 +23,3 @@ var LoginDemo = require('./LoginDemo.js');
 
 
 module.exports = LoginDemo;
-//# sourceMappingURL=index.js.map

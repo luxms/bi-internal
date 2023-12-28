@@ -1,20 +1,7 @@
-import React from "react";
-import './Calendar.scss';
 import { CalendarProps } from "./Calendar.types";
-interface ICalendarState {
-    selectedYear: number;
-    selectedMonth: number;
-}
-declare class Calendar extends React.Component<CalendarProps, ICalendarState> {
-    state: ICalendarState;
-    constructor(props: CalendarProps);
-    private _select;
-    private _decYear;
-    private _incYear;
-    private _decMonth;
-    private _incMonth;
-    private _onApply;
-    private _isSelectable;
+import React = require("../../defs/react");
+declare class Calendar extends React.Component<CalendarProps> {
+    public constructor(props: CalendarProps);
     render(): JSX.Element;
 }
 export default Calendar;

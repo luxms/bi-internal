@@ -1,7 +1,9 @@
 import React = require("../defs/react");
 import PropsWithChildren = React.PropsWithChildren;
 
-type IfICanSelect = {eachOf?: string[], oneOf?: string[], one?: string} & ({eachOf: string[]} | {oneOf: string[]} | {one: string});
+type IfICanSelect =
+    { eachOf?: string[], oneOf?: string[], one?: string, oneValue?: any }
+    & ({ eachOf: string[] } | { oneOf: string[] } | { one: string, oneValue?: any });
 type IfICanProps = Readonly<PropsWithChildren<IfICanSelect>>;
 
 /**

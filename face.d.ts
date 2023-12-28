@@ -53,3 +53,5 @@ import Tag from './face/Tag';
 export { Tag };
 import Breadcrumb from './face/Breadcrumb';
 export { Breadcrumb };
+import Input from './face/Input';
+export { Input };
